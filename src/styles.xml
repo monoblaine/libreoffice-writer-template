@@ -861,7 +861,8 @@
         <text:outline-style style:name="Outline">
             <text:outline-level-style text:level="1"
                                       text:style-name="Numbering_20_Symbols"
-                                      loext:num-list-format="%1%"
+                                      loext:num-list-format="%1%."
+                                      style:num-suffix="."
                                       style:num-format="1">
                 <style:list-level-properties text:list-level-position-and-space-mode="label-alignment">
                     <style:list-level-label-alignment text:label-followed-by="listtab"
@@ -872,7 +873,8 @@
             </text:outline-level-style>
             <text:outline-level-style text:level="2"
                                       text:style-name="Numbering_20_Symbols"
-                                      loext:num-list-format="%1%.%2%"
+                                      loext:num-list-format="%1%.%2%."
+                                      style:num-suffix="."
                                       style:num-format="1"
                                       text:display-levels="2">
                 <style:list-level-properties text:list-level-position-and-space-mode="label-alignment">
@@ -884,7 +886,8 @@
             </text:outline-level-style>
             <text:outline-level-style text:level="3"
                                       text:style-name="Numbering_20_Symbols"
-                                      loext:num-list-format="%1%.%2%.%3%"
+                                      loext:num-list-format="%1%.%2%.%3%."
+                                      style:num-suffix="."
                                       style:num-format="1"
                                       text:display-levels="3">
                 <style:list-level-properties text:list-level-position-and-space-mode="label-alignment">
@@ -896,7 +899,8 @@
             </text:outline-level-style>
             <text:outline-level-style text:level="4"
                                       text:style-name="Numbering_20_Symbols"
-                                      loext:num-list-format="%1%.%2%.%3%.%4%"
+                                      loext:num-list-format="%1%.%2%.%3%.%4%."
+                                      style:num-suffix="."
                                       style:num-format="1"
                                       text:display-levels="4">
                 <style:list-level-properties text:list-level-position-and-space-mode="label-alignment">
@@ -908,7 +912,8 @@
             </text:outline-level-style>
             <text:outline-level-style text:level="5"
                                       text:style-name="Numbering_20_Symbols"
-                                      loext:num-list-format="%1%.%2%.%3%.%4%.%5%"
+                                      loext:num-list-format="%1%.%2%.%3%.%4%.%5%."
+                                      style:num-suffix="."
                                       style:num-format="1"
                                       text:display-levels="5">
                 <style:list-level-properties text:list-level-position-and-space-mode="label-alignment">
@@ -920,7 +925,8 @@
             </text:outline-level-style>
             <text:outline-level-style text:level="6"
                                       text:style-name="Numbering_20_Symbols"
-                                      loext:num-list-format="%1%.%2%.%3%.%4%.%5%.%6%"
+                                      loext:num-list-format="%1%.%2%.%3%.%4%.%5%.%6%."
+                                      style:num-suffix="."
                                       style:num-format="1"
                                       text:display-levels="6">
                 <style:list-level-properties text:list-level-position-and-space-mode="label-alignment">
@@ -975,6 +981,7 @@
                          style:display-name="Numbering 123">
             <text:list-level-style-number text:level="1"
                                           text:style-name="Numbering_20_Symbols"
+                                          loext:num-list-format="%1%."
                                           style:num-suffix="."
                                           style:num-format="1">
                 <style:list-level-properties text:list-level-position-and-space-mode="label-alignment">
