@@ -740,7 +740,7 @@
                                    style:font-pitch="fixed"
                                    fo:background-color="#efefef"/>
         </style:style>
-        <style:style style:name="Highlighted_Source_20_Text"
+        <style:style style:name="Highlighted_20_Source_20_Text"
                      style:display-name="Highlighted Source Text"
                      style:family="text"
                      style:parent-style-name="Source_20_Text">
