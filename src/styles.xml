@@ -644,6 +644,7 @@
                                         fo:border="none"/>
             <style:text-properties style:font-name="JetBrains Mono"
                                    fo:font-family="&apos;JetBrains Mono&apos;"
+                                   fo:font-size="90%"
                                    style:font-style-name="Regular"
                                    style:font-family-generic="modern"
                                    style:font-pitch="fixed"/>
