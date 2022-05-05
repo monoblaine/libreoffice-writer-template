@@ -25,6 +25,26 @@ sub _ChangeFontSize (factor as Single)
     text.CharHeight = text.CharHeight * factor
 end sub
 
+sub SetColorDanger
+    _SetColor(&hFF0000)
+end sub
+
+sub SetColorSuccess
+    _SetColor(&h127622)
+end sub
+
+sub SetColorWarning
+    _SetColor(&hEA7500)
+end sub
+
+sub RemoveColor
+    _SetColor(-1)
+end sub
+
+sub _SetColor(color as Long)
+    ThisComponent.CurrentSelection.getByIndex(0).CharColor = color
+end sub
+
 sub EndOfWord
     document = ThisComponent.CurrentController.Frame
     dispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
