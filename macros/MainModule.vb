@@ -92,3 +92,95 @@ sub EndOfWordExtend
         dispatcher.executeDispatch(document, ".uno:CharLeftSel", "", 0, args())
     next i
 end sub
+
+' Credits: https://forum.openoffice.org/en/forum/viewtopic.php?p=355072&sid=5b308cb7f91a95563cba0257b85389d0#p355072
+
+sub FormatCrossReferences
+    dim oParEnum           'Paragraph enumerator
+    dim oSecEnum           'text section enumerator
+    dim oPar               'Current paragraph
+    dim oParSection        'Current Section
+
+    oParEnum = thisComponent.Text.createEnumeration()
+
+    do while oParEnum.hasMoreElements()
+        oPar = oParEnum.nextElement()
+
+        if oPar.supportsService("com.sun.star.text.Paragraph") then
+            oSecEnum = oPar.createEnumeration()
+
+            do while oSecEnum.hasMoreElements()
+                oParSection = oSecEnum.nextElement()
+
+                if (oParSection.TextPortionType = "TextField") then
+                    if (oParSection.TextField.SupportedServiceNames(0) = "com.sun.star.text.TextField.GetReference") then
+                        ' set style --> warning: must exist, otherwise exception (illegal argument ...)
+                        oParSection.CharStyleName = "Internet Link"
+                    end if
+                end if
+            loop
+        end if
+    loop
+end sub
+
+sub RefineTextButton
+   dim mCurSelection
+
+   oDoc = thisComponent ' global defined
+   oVC = oDoc.currentController.viewCursor
+
+   mCurSelection = oDoc.currentSelection ' store current view cursor
+
+   FormatCrossReferences
+
+   oDoc.currentController.select(mCurSelection) ' restore initial cursor position
+
+   ' MsgBox "Finished.", 0, "RefineText"
+end sub
+
+' Credits: https://forum.openoffice.org/en/forum/viewtopic.php?p=241033&sid=2be543144fe107264b87252536b76698#p241033
+sub DeleteCurrentParagraph
+    oDoc = ThisComponent
+    oVC = oDoc.CurrentController.getViewCursor
+    oTC = oDoc.Text.createTextCursorByRange(oVC)
+    oTC.gotoStartOfParagraph(false)
+    oTC.gotoEndOfParagraph(true)
+    oTC.String = ""
+    oTC.goLeft(1, true)
+    oTC.String = ""
+
+    dim document   as Object
+    dim dispatcher as Object
+
+    document   = ThisComponent.CurrentController.Frame
+    dispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+
+    dim args1(1) as new com.sun.star.beans.PropertyValue
+
+    args1(0).Name = "Count"
+    args1(0).Value = 1
+    args1(1).Name = "Select"
+    args1(1).Value = false
+
+    dispatcher.executeDispatch(document, ".uno:GoRight", "", 0, args1())
+end sub
+
+sub OnCharLeft
+    oVC = thisComponent.getCurrentController.getViewCursor
+
+    if Len(oVC.String) then
+        oVC.collapseToStart
+    else
+        oVC.goLeft(1, false)
+    end if
+end sub
+
+sub OnCharRight
+    oVC = thisComponent.getCurrentController.getViewCursor
+
+    if Len(oVC.String) then
+        oVC.collapseToEnd
+    else
+        oVC.goRight(1, false)
+    end if
+end sub
