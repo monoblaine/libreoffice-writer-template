@@ -184,3 +184,18 @@ sub OnCharRight
         oVC.goRight(1, false)
     end if
 end sub
+
+' Credits: https://wiki.documentfoundation.org/Macros/Writer/006
+sub UpdateIndexes()
+    '''Update indexes, such as for the table of contents'''
+
+    dim i as Integer
+
+    with ThisComponent ' Only process Writer documents
+        if .supportsService("com.sun.star.text.GenericTextDocument") then
+            for i = 0 to .getDocumentIndexes().count - 1
+                .getDocumentIndexes().getByIndex(i).update()
+            next i
+        end if
+    end with ' ThisComponent
+end sub
