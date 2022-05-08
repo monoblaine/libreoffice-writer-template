@@ -69,7 +69,7 @@ sub EndOfWordExtend
     newSelection = ThisComponent.CurrentController.Selection.getByIndex(0).String
     newSelectionLen = Len(newSelection)
 
-    textSearch = CreateUnoService("com.sun.star.util.TextSearch")
+    textSearch = createUnoService("com.sun.star.util.TextSearch")
     textSearchOptions = CreateUnoStruct("com.sun.star.util.SearchOptions")
     textSearchOptions.algorithmType = com.sun.star.util.SearchAlgorithms.REGEXP
     textSearchOptions.searchString = "([\s]+)$"
