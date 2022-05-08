@@ -7,7 +7,7 @@ sub ConvertToSmallerHighlightedSourceText
 end sub
 
 sub _ConvertToSmallerCharacterStyle (charStyleName as String)
-    text = ThisComponent.CurrentSelection.getByIndex(0)
+    text = ThisComponent.CurrentController.Selection.getByIndex(0)
     text.CharStyleName = charStyleName
     text.CharHeight = text.CharHeight * .9
 end sub
@@ -21,7 +21,7 @@ sub DecreaseFontSize
 end sub
 
 sub _ChangeFontSize (factor as Single)
-    text = ThisComponent.CurrentSelection.getByIndex(0)
+    text = ThisComponent.CurrentController.Selection.getByIndex(0)
     text.CharHeight = text.CharHeight * factor
 end sub
 
@@ -42,7 +42,7 @@ sub RemoveColor
 end sub
 
 sub _SetColor(color as Long)
-    ThisComponent.CurrentSelection.getByIndex(0).CharColor = color
+    ThisComponent.CurrentController.Selection.getByIndex(0).CharColor = color
 end sub
 
 sub EndOfWord
@@ -57,7 +57,7 @@ sub EndOfWord
 end sub
 
 sub EndOfWordExtend
-    initialSelection = ThisComponent.CurrentSelection.getByIndex(0).String
+    initialSelection = ThisComponent.CurrentController.Selection.getByIndex(0).String
     initialSelectionLen = Len(initialSelection)
 
     document = ThisComponent.CurrentController.Frame
@@ -66,7 +66,7 @@ sub EndOfWordExtend
 
     dispatcher.executeDispatch(document, ".uno:WordRightSel", "", 0, args())
 
-    newSelection = ThisComponent.CurrentSelection.getByIndex(0).String
+    newSelection = ThisComponent.CurrentController.Selection.getByIndex(0).String
     newSelectionLen = Len(newSelection)
 
     textSearch = CreateUnoService("com.sun.star.util.TextSearch")
@@ -129,7 +129,7 @@ sub RefineTextButton
    oDoc = thisComponent ' global defined
    oVC = oDoc.currentController.viewCursor
 
-   mCurSelection = oDoc.currentSelection ' store current view cursor
+   mCurSelection = oDoc.currentController.Selection ' store current view cursor
 
    FormatCrossReferences
 
