@@ -21,7 +21,13 @@ sub JumpToLink
 
     if IsEmpty(vc.TextField) = false then
         anchor = vc.TextField.Anchor
-        _JumpToReference(vc.TextField.SourceName)
+        sourceName = vc.TextField.SourceName
+
+        if InStr(sourceName, "__RefHeading___Toc") then
+            _JumpToBookmark(sourceName)
+        else
+            _JumpToReference(sourceName)
+        end if
     elseif vc.HyperLinkURL <> "" and IsEmpty(vc.TextParagraph) = false then
         anchor = vc.TextParagraph.Anchor
         _JumpToHyperLink
@@ -40,9 +46,16 @@ sub ReturnFromJump
     anchor = Nothing
 end sub
 
+sub _JumpToBookmark (sourceName)
+    _JumpToAnchor(ThisComponent.Bookmarks.getByName(sourceName).getAnchor())
+end sub
+
 sub _JumpToReference (sourceName)
-    referenceAnchor = ThisComponent.ReferenceMarks.getByName(sourceName).getAnchor()
-    ThisComponent.CurrentController.select(referenceAnchor)
+    _JumpToAnchor(ThisComponent.ReferenceMarks.getByName(sourceName).getAnchor())
+end sub
+
+sub _JumpToAnchor (targetAnchor)
+    ThisComponent.CurrentController.select(targetAnchor)
     ThisComponent.CurrentController.ViewCursor.collapseToStart
 end sub
 
