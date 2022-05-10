@@ -46,6 +46,8 @@ sub _SetColor(color as Long)
 end sub
 
 sub EndOfWord
+    on error resume next
+
     document = ThisComponent.CurrentController.Frame
     dispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
     dim args(0) as new com.sun.star.beans.PropertyValue
@@ -57,6 +59,8 @@ sub EndOfWord
 end sub
 
 sub EndOfWordExtend
+    on error resume next
+
     initialSelection = ThisComponent.CurrentController.Selection.getByIndex(0).String
     initialSelectionLen = Len(initialSelection)
 
