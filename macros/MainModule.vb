@@ -203,3 +203,25 @@ sub UpdateIndexes()
         end if
     end with ' ThisComponent
 end sub
+
+sub GoToNextElementAndUnfold
+    document = ThisComponent.CurrentController.Frame
+    dispatcher = createUnoService("com.sun.star.frame.DispatchHelper")
+    dim args(0) as new com.sun.star.beans.PropertyValue
+    vc = ThisComponent.CurrentController.ViewCursor
+    lastPosY = 0
+
+    do while vc.Position.Y > lastPosY
+        selection = ThisComponent.CurrentController.Selection.getByIndex(0)
+        outlineContentVisible = selection.OutlineContentVisible
+
+        if UBound(outlineContentVisible) = 0 then
+            if outlineContentVisible(0).Value = False then
+                dispatcher.executeDispatch(document, ".uno:ToggleOutlineContentVisibility", "", 0, args())
+            end if
+        end if
+
+        lastPosY = vc.Position.Y
+        dispatcher.executeDispatch(document, ".uno:ScrollToNext", "", 0, args())
+    loop
+end sub
