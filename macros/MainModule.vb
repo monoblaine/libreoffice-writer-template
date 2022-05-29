@@ -1,9 +1,22 @@
+sub ConvertToHighlightedText
+    _ConvertToCharacterStyle("Highlighted Text")
+end sub
+
+sub ConvertToUserEntryText
+    _ConvertToCharacterStyle("User Entry")
+end sub
+
 sub ConvertToSmallerSourceText
     _ConvertToSmallerCharacterStyle("Source Text")
 end sub
 
 sub ConvertToSmallerHighlightedSourceText
     _ConvertToSmallerCharacterStyle("Highlighted Source Text")
+end sub
+
+sub _ConvertToCharacterStyle (charStyleName as String)
+    text = ThisComponent.CurrentController.Selection.getByIndex(0)
+    text.CharStyleName = charStyleName
 end sub
 
 sub _ConvertToSmallerCharacterStyle (charStyleName as String)
