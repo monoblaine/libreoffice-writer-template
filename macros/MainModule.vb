@@ -25,6 +25,18 @@ sub _ChangeFontSize (factor as Single)
     text.CharHeight = text.CharHeight * factor
 end sub
 
+sub SetColorBsPrimary
+    _SetColor(&h0D6EFD)
+end sub
+
+sub SetColorMuted
+    _SetColor(&h6C757D)
+end sub
+
+sub SetColorInfo
+    _SetColor(&h0DCAF0)
+end sub
+
 sub SetColorDanger
     _SetColor(&hFF0000)
 end sub
